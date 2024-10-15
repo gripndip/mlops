@@ -11,7 +11,7 @@ Useful template to bootstrap new professional data science and python projects.
 * [What are the benefits?](#what-are-the-benefits)
 * [Getting started](#getting-started)  
 
-# What is it?
+# What is it??
 
 Its intended use is to generate basic, most common configuration - however each team and developer is encouraged to modify it for its special needs.
 
