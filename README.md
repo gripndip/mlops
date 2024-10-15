@@ -11,14 +11,16 @@ Useful template to bootstrap new professional data science and python projects.
 * [What are the benefits?](#what-are-the-benefits)
 * [Getting started](#getting-started)  
 
+
 # What is it
+
 
 Its intended use is to generate basic, most common configuration - however each team and developer is encouraged to modify it for its special needs.
 
 It is a result of our experiences with building data science projects and is a part of our internal best practices, however it is not a silver bullet and should be treated as a starting point for your project.
 Especially some settings might be less/more restrictive than you needs  but we believe it is better to start with a good baseline and modify it later than to start from scratch.
 
-# What are the benefits?
+# What are the benefits? SBER
 
 Generated project consists of:
 
