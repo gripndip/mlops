@@ -7,3 +7,4 @@
     *   Linux/macOS: `source .venv/bin/activate`
     *   Windows: `.venv\Scripts\activate`
 5.  Установите зависимости: `pip install -r requirements.txt`
+6.  Установите pre-commit хуки: `pre-commit install`
