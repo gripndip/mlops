@@ -1,10 +1,56 @@
-## Установка окружения
+Визуальное руководство по настройке и запуску проекта
+1. Установка зависимостей
+Для начала установите Poetry, который поможет управлять зависимостями проекта:
+ 
+pip install poetry
 
-1.  Клонируйте репозиторий: `git clone https://github.com/gripndip/mlops`
-2.  Перейдите в каталог проекта: `cd mlops`
-3.  Создайте виртуальное окружение: `python3 -m venv .venv`
-4.  Активируйте виртуальное окружение:
-    *   Linux/macOS: `source .venv/bin/activate`
-    *   Windows: `.venv\Scripts\activate`
-5.  Установите зависимости: `pip install -r requirements.txt`
-6.  Установите pre-commit хуки: `pre-commit install`
+2. Создание и активация виртуального окружения
+Теперь создайте и активируйте виртуальное окружение с помощью Poetry:
+
+poetry install
+poetry shell
+
+3. Запуск Docker контейнеров
+Запустите Docker контейнеры с помощью Docker Compose:
+ 
+docker-compose up -d
+
+4. Проверка работы MinIO
+Перейдите в браузер и откройте http://localhost:9001. Введите следующие данные для входа:
+
+Username: minioadmin
+Password: minioadmin
+
+5. Создание bucket для хранения данных
+После входа в интерфейс MinIO, создайте новый бакет с именем, например, my-dataset, в котором будет храниться исходный и обработанный датасет.
+
+6. Загрузка датасета в MinIO
+Скачайте датасет (например, Titanic dataset: https://www.kaggle.com/datasets/brendan45774/test-file?select=tested.csv) в формате CSV. Затем перетащите файл в интерфейс MinIO в созданный бакет my-dataset.
+
+7. Запуск ETL процесса
+Запустите ETL процесс, запустив файл etl_script.py с помощью команды:
+
+ 
+poetry run python main.py
+8. Проверка результатов
+После выполнения скрипта новый обработанный файл Titanic_processed.csv будет загружен обратно в S3 в тот же бакет my-dataset.
+
+9. Проверка качества кода и типов
+Для проверки качества кода и типов используется flake8 и mypy. Эти инструменты настроены для использования с pre-commit hook.
+
+10. Установка pre-commit
+Установите pre-commit (если он еще не установлен):
+
+ 
+poetry add --dev pre-commit
+pre-commit install
+11. Запуск pre-commit hook
+При каждом коммите будут выполняться проверки стиля кода и типов. Для ручного запуска проверок можно выполнить:
+
+ 
+pre-commit run --all-files
+12. Остановка контейнеров
+После всех работ, вы можете остановить контейнер MinIO командой:
+
+ 
+docker-compose down
