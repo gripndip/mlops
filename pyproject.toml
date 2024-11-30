@@ -5,41 +5,19 @@ description = ""
 authors = ["Treglazov Egor <etreglazov@datanomica.org>"]
 readme = "README.md"
 
-
 [tool.poetry.dependencies]
-python = ">=3.10"
-black = "^24.10.0"
-flake8 = "^7.1.1"
-ipython = "^8.29.0"
-isort = "^5.13.2"
-jupyterlab = "^4.3.0"
-loguru = "^0.7.2"
-matplotlib = "^3.9.2"
-mkdocs = "^1.6.1"
-notebook = "^7.2.2"
-numpy = "^1.26.4"
-pandas = "^2.2.3"
-python-dotenv = "^1.0.1"
-scikit-learn = "^1.5.2"
-tqdm = "^4.66.6"
-typer = "^0.12.5"
-mypy = "^1.13.0"
-pre-commit = "^4.0.1"
-boto3 = "^1.35.54"
-mlflow = "^2.7.0"
-pyarrow = "^12.0.0"
-wandb = "^0.15.12"
+python = "^3.9"
+scikit-learn = "^1.0.2"
+mlflow = "^1.23.1"
+boto3 = "^1.18.44"
+pandas = "^1.3.3"
+numpy = "^1.21.2"
+click = "^8.0.1"
+omegaconf = "^2.1.1"
+pyyaml = "^5.4.1"
 
-[tool.black]
-line-length = 99
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.venv
-)/
-'''
+[tool.poetry.dev-dependencies]
 
-[tool.ruff.lint.isort]
-known_first_party = ["src"]
-force_sort_within_sections = true
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
