@@ -1,11 +1,24 @@
-FROM python:3.10-slim
+FROM debian:buster-slim
+
+# Установка Python и необходимых пакетов
+RUN apt-get update && \
+    apt-get install -y \
+    python3 \
+    python3-pip \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock ./
-RUN pip install poetry && poetry config virtualenvs.create false && poetry install --no-dev
-RUN pip install wandb
+# Копируем и устанавливаем зависимости
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY lab3/ ./lab3/
+# Создание необходимых директорий
+RUN mkdir -p output
 
-CMD ["tail", "-f", "/dev/null"]
+# Копируем код
+COPY . .
+
+CMD ["python3"]

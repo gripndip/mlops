@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = lyakhov-lab
+PROJECT_NAME = test_project
 PYTHON_VERSION = 3.10
 PYTHON_INTERPRETER = python
 DOWNLOAD_SCRIPT=lab3/scripts/download_from_s3.py
