@@ -12,14 +12,14 @@ REM Проверяем наличие requirements.txt
 if not exist requirements.txt (
     echo Creating requirements.txt...
     (
-        echo pandas==1.5.3
-        echo scikit-learn==1.0.2
-        echo wandb==0.15.11
-        echo boto3==1.28.44
-        echo joblib==1.3.2
-        echo requests==2.31.0
+        echo pandas^>=1.3.0,^<1.4.0
+        echo scikit-learn^>=0.24.0,^<0.25.0
+        echo wandb^>=0.12.0
+        echo boto3^>=1.20.0
+        echo joblib^>=1.0.0
+        echo requests^>=2.25.0
         echo urllib3^<2
-        echo numpy^>=1.20.0
+        echo numpy^>=1.19.0
         echo python-dotenv^>=0.19.0
     ) > requirements.txt
 )
@@ -34,15 +34,17 @@ if not exist .env (
     ) > .env
 )
 
-REM Удаляем существующую сеть и создаем заново
-docker network rm ml_network 2>nul
-docker network create ml_network
-
-REM Останавливаем существующие контейнеры
+REM Останавливаем все контейнеры
 docker-compose down 2>nul
 docker rm -f minio 2>nul
 
-REM Очищаем образы
+REM Удаляем сеть если существует
+docker network rm ml_network 2>nul
+
+REM Создаем сеть заново
+docker network create ml_network
+
+REM Очищаем образ
 docker rmi trainer 2>nul
 
 REM Собираем образ
