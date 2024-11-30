@@ -1,24 +1,11 @@
-# Dockerfile
-FROM python:3.9-slim
+FROM python:3.10-slim
 
-# Установка необходимых системных зависимостей
-RUN apt-get update && apt-get install -y \
-    git \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
-
-# Установка poetry
-RUN pip install --no-cache-dir poetry
-
-# Установка зависимостей с помощью poetry
-COPY pyproject.toml poetry.lock ./
-RUN poetry config virtualenvs.create false && poetry install --only main
-
-# Установка рабочей директории
 WORKDIR /app
 
-# Копирование всех файлов проекта в рабочую директорию
-COPY . /app
+COPY pyproject.toml poetry.lock ./
+RUN pip install poetry && poetry config virtualenvs.create false && poetry install --no-dev
+RUN pip install wandb
 
-# Команда по умолчанию
-CMD ["bash"]
+COPY lab3/ ./lab3/
+
+CMD ["tail", "-f", "/dev/null"]
