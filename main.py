@@ -1,8 +1,8 @@
 import argparse
 import yaml
 from omegaconf import OmegaConf
-from src.s3_operations import download_from_s3
-from src.train import train_model
+from s3_operations import download_from_s3
+from train import train_model
 import mlflow
 
 def main(config_path: str):
